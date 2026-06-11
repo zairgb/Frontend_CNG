@@ -4,11 +4,17 @@ import { Api } from './services/api';
 import { Producto } from './models/producto';
 import { Proveedor } from './models/proveedor';
 import { NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgClass],
+  imports: [
+    RouterOutlet,
+    NgClass,
+    FormsModule
+  ],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
@@ -20,6 +26,14 @@ export class App {
 
   productos: Producto[] = [];
   proveedores: Proveedor[] = [];
+
+  nuevoProducto = {
+    producto: '',
+    cantidad: 0,
+    promocion: false,
+    fecha_fin: null,
+    proveedores: []
+  };
 
   ngOnInit() {
     this.cargarProductos();
@@ -39,6 +53,18 @@ export class App {
       },
       error: (error) => {
         console.error('Error al cargar productos:', error);
+      }
+    });
+  }
+
+  guardarProducto() {
+    this.api.crearProducto(this.nuevoProducto).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.cargarProductos();
+      },
+      error: (err) => {
+        console.error(err);
       }
     });
   }

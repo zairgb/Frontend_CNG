@@ -26,6 +26,21 @@ export class Api {
         return this.http.get<Producto[]>(`${this.baseUrl}/productos`);
     }
 
+    // Crear producto
+    crearProducto(data: any) {
+        return this.http.post(`${this.baseUrl}/productos`, data);
+    }
+
+    // Actualizar producto
+    actualizarProducto(id: number, data: any) {
+        return this.http.put(`${this.baseUrl}/productos/${id}`, data);
+    }
+
+    // Eliminar producto
+    eliminarProducto(id: number) {
+        return this.http.delete(`${this.baseUrl}/productos/${id}`);
+    }
+
     //proveedores
     obtenerProveedores(): Observable<Proveedor[]> {
         return this.http.get<Proveedor[]>(`${this.baseUrl}/proveedores`);
