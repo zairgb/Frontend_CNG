@@ -1,29 +1,170 @@
-<header class="app-header w-full h-16 bg-amber-600 text-white p-4 text-center">
-  <h1>My App</h1>
+<header class="app-header w-full h-16 text-white py-4 px-6 text-center flex justify-between gap-2">
+  <!--logo-->
+  <div class="flex items-center gap-2 mb-5">
+    <h2 class="text-3xl font-black text-zinc-800">
+      PGNC
+    </h2>
+
+    <div class="flex gap-1">
+      <span class="w-3 h-3 rounded-full bg-teal-500"></span>
+      <span class="w-3 h-3 rounded-full bg-red-400"></span>
+    </div>
+  </div>
+  <!--menu-->
+  <nav>
+    <ul class="flex gap-16">
+      <li class="text-zinc-400 font-semibold text-lg cursor-pointer">Home</li>
+      <li class="text-zinc-400 font-semibold text-lg cursor-pointer">producto</li>
+      <li class="text-zinc-400 font-semibold text-lg cursor-pointer">About me</li>
+    </ul>
+  </nav>
+
+  <button class="px-2 bg-teal-500 rounded-2xl font-semibold text-md">Contact me</button>
 </header>
-<main class="app-main p-4">
+<main class="app-main p-4 flex flex-col justify-center items-center">
+
   <router-outlet></router-outlet>
-  <p class="text-lg font-semibold">mensaje: {{ mensaje() }}</p>
-  <div class="p-8">
-    <h1 class="text-3xl font-bold mb-5">Productos</h1>
-    @for (producto of productos; track producto.id) {
-      <div class="border rounded-lg p-4 mb-4">
-        <h2 class="font-bold text-xl">{{ producto.producto }}</h2>
+  <!--presentacion-->
+  <section class="mb-8 text-center flex flex-col">
+    <h1 class="font-black text-7xl text-zinc-800">
+      Fornted
+    </h1>
+    <h1 class="font-black text-7xl text-teal-800">
+      Backend
+    </h1>
+    <p class="w-250 mt-4 font-mono text-xl text-zinc-600 text-justify-center">
+      Desarrollo de una aplicacion web moderna utilizando Angular para el frontend, Tailwind CSS para el diseño responsivo y Laravel como backend, en un entorno local con laragon, hecho por jair Jose mejia Gutierrez
+    </p>
+  </section>
 
-        <p>Cantidad: {{ producto.cantidad }}</p>
-        <p>Promoción: {{ producto.promocion ? 'Sí' : 'No' }}</p>
-        <p>Fecha: {{ producto.fecha_fin }}</p>
+  <hr class="w-full mb-8 border-teal-300" />
+  <!-- productos -->
+  <section class="w-11/12 mb-8 bg-zinc-100 flex flex-col items-center rounded-2xl p-6">
+    <div class="w-full max-w-3xl flex flex-col">
+      <h1 class="text-3xl font-bold mb-5 text-zinc-900 uppercase text-center">Productos</h1>
+      <div class="contenedor flex gap-2">
+        @for (producto of productos; track producto.id) {
+          <div class="w-lg border-2 border-teal-800 rounded-lg p-4 mb-4 flex flex-col">
+            <h2 class="font-bold text-xl text-teal-600">{{ producto.producto }}</h2>
 
-        <h3 class="mt-3 font-bold">Proveedores:</h3>
+            <p class="text-zinc-600">Cantidad: {{ producto.cantidad }}</p>
+            <p class="text-zinc-600">Promoción: {{ producto.promocion ? 'Sí' : 'No' }}</p>
+            <p class="text-zinc-600">Fecha: {{ producto.fecha_fin }}</p>
 
-        <ul>
-          @for (proveedor of producto.proveedores; track proveedor.id) {
-            <li>
-              {{ proveedor.proveedor }} - {{ proveedor.telefono }}
-            </li>
-          }
+            <h3 class="mt-3 font-bold text-teal-900">Proveedores:</h3>
+
+            <ul>
+              @for (proveedor of producto.proveedores; track proveedor.id) {
+                <li class="text-zinc-600">
+                  {{ proveedor.proveedor }} - {{ proveedor.telefono }}
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="w-full mt-10 border-t border-zinc-300 bg-white">
+  <div class="max-w-7xl mx-auto px-8 py-14">
+
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
+
+      <!-- Logo -->
+      <div>
+        <div class="flex items-center gap-2 mb-5">
+          <h2 class="text-3xl font-black text-zinc-800">
+            PGNC
+          </h2>
+
+          <div class="flex gap-1">
+            <span class="w-3 h-3 rounded-full bg-teal-500"></span>
+            <span class="w-3 h-3 rounded-full bg-red-400"></span>
+          </div>
+        </div>
+
+        <p class="text-zinc-500 mb-3">
+          A product by Jair.
+        </p>
+
+        <p class="text-zinc-500 mb-3">
+          All rights reserved.
+        </p>
+
+        <p class="text-zinc-500">
+          © 2026 PGNC
+        </p>
+      </div>
+
+      <!-- About -->
+      <div>
+        <h3 class="font-bold text-zinc-800 mb-4">
+          About
+        </h3>
+
+        <ul class="space-y-3 text-zinc-500">
+          <li class="hover:text-teal-500 cursor-pointer transition">Download</li>
+          <li class="hover:text-teal-500 cursor-pointer transition">Overview</li>
+          <li class="hover:text-teal-500 cursor-pointer transition">Examples</li>
+          <li class="hover:text-teal-500 cursor-pointer transition">Blog</li>
         </ul>
       </div>
-    }
+
+      <!-- General -->
+      <div>
+        <h3 class="font-bold text-zinc-800 mb-4">
+          General
+        </h3>
+
+        <ul class="space-y-3 text-zinc-500">
+          <li class="hover:text-teal-500 cursor-pointer transition">Notice</li>
+          <li class="hover:text-teal-500 cursor-pointer transition">License</li>
+          <li class="hover:text-teal-500 cursor-pointer transition">Press Inquiry</li>
+          <li class="hover:text-teal-500 cursor-pointer transition">Press Images</li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h3 class="font-bold text-zinc-800 mb-4">
+          Resources
+        </h3>
+
+        <ul class="space-y-3 text-zinc-500">
+          <li class="hover:text-teal-500 cursor-pointer transition">Help</li>
+          <li class="hover:text-teal-500 cursor-pointer transition">Tour</li>
+          <li class="hover:text-teal-500 cursor-pointer transition">Contact</li>
+          <li class="hover:text-teal-500 cursor-pointer transition">Privacy</li>
+        </ul>
+      </div>
+
+      <!-- Redes -->
+      <div class="flex md:justify-end items-start gap-4">
+
+        <a
+          href="#"
+          class="w-11 h-11 rounded-full bg-teal-500 text-white flex justify-center items-center hover:scale-110 transition-all duration-300">
+          <i class="fa-brands fa-discord text-lg"></i>
+        </a>
+
+        <a
+          href="#"
+          class="w-11 h-11 rounded-full bg-teal-500 text-white flex justify-center items-center hover:scale-110 transition-all duration-300">
+          <i class="fa-brands fa-x-twitter text-lg"></i>
+        </a>
+
+        <a
+          href="#"
+          class="w-11 h-11 rounded-full bg-teal-500 text-white flex justify-center items-center hover:scale-110 transition-all duration-300">
+          <i class="fa-brands fa-youtube text-lg"></i>
+        </a>
+
+      </div>
+
+    </div>
+
   </div>
-</main>
+</footer>
+
